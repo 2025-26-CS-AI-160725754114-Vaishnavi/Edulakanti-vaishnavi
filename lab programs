@@ -1,0 +1,492 @@
+Name: E.Vaishnavi
+
+Roll Number: 160725754114
+
+Class: CSA(B)
+
+Date: 19-02-26
+
+1.PROGRAM TO INSERT NODE AT THE BEGINNING(SLL) :
+#include <stdio.h>
+#include <stdlib.h>
+struct Node {
+int data;
+struct Node* next;
+};
+void insertAtBeginning(struct Node** head, int data)
+
+{
+
+struct Node* temp = (struct Node*)malloc(sizeof(struct Node));
+
+temp->data = data;
+
+temp->next = *head;
+
+*head = temp;
+
+}
+
+void displayNodes(struct Node* head) {
+
+struct Node* current = head;
+
+printf("Singly Linked List: ");
+
+while (current != NULL) {
+
+printf("%d -> ", current->data);
+
+current = current->next;
+
+}
+
+printf("NULL\n");
+
+}
+
+int main() {
+
+struct Node* head = NULL; // Head pointer
+
+insertAtBeginning(&head, 30);
+
+insertAtBeginning(&head, 20);
+
+insertAtBeginning(&head, 10);
+
+displayNodes(head);
+
+return 0;
+
+}
+
+
+OUTPUT:
+
+Singly Linked List: 10 -> 20 -> 30 -> NULL
+
+
+
+2.PROGRAM TO INSERT NODE AT THE END PROGRAM(SLL):
+
+#include <stdio.h>
+
+#include <stdlib.h>
+
+struct Node {
+
+int data;
+
+struct Node* next;
+
+};
+
+void insertAtEnd(struct Node** head, int data) {
+
+struct Node* temp = (struct Node*)malloc(sizeof(struct Node));
+
+temp->data = data;
+
+temp->next = NULL;
+
+if (*head == NULL) {
+
+*head = temp;
+
+return;
+
+}
+
+struct Node* current = *head;
+
+while (current->next != NULL) {
+
+current = current->next;
+
+}
+
+current->next = temp;
+
+}
+
+void displayNodes(struct Node* head) {
+
+struct Node* current = head;
+
+printf("Singly Linked List: ");
+
+while (current != NULL) {
+
+printf("%d -> ", current->data);
+
+current = current->next;
+}
+
+printf("NULL\n");
+
+}
+
+int main() {
+
+struct Node* head = NULL;
+
+insertAtEnd(&head, 10);
+
+insertAtEnd(&head, 20);
+
+insertAtEnd(&head, 30);
+
+insertAtEnd(&head, 40);
+
+displayNodes(head); // Output: 10 -> 20 -> 30 -> 40 -> NULL
+
+return 0;
+
+OUTPUT:
+
+Singly Linked List: 10 -> 20 -> 30 -> 40 -> NULL
+
+
+
+3.PROGRAM TO INSERT NODE AT SPECIFIC POSITION(SLL):
+
+#include <stdio.h>
+
+#include <stdlib.h>
+
+struct Node {
+
+int data;
+
+struct Node* next;
+
+};
+
+void insertAtPosition(struct Node** head, int data, int position) {
+
+struct Node* temp = (struct Node*)malloc(sizeof(struct Node)); temp->data = data;
+
+temp->next = NULL;
+
+if (position == 1) {
+
+temp->next = *head;
+
+*head = temp;
+
+return;
+
+}
+
+struct Node* current = *head;
+
+for (int i = 1; current != NULL && i < position - 1; i++) {
+
+current = current->next;
+
+}
+
+if (current == NULL) {
+
+printf("Position out of range!\n");
+
+free(temp);
+
+return;
+
+}
+
+temp->next = current->next;
+
+current->next = temp;
+
+}
+
+void displayNodes(struct Node* head) {
+
+struct Node* current = head;
+
+printf("Singly Linked List: ");
+
+while (current != NULL) {
+
+printf("%d -> ", current->data);
+
+current = current->next;
+
+}
+
+printf("NULL\n");
+
+}
+
+int main() {
+
+struct Node* head = NULL;
+
+insertAtPosition(&head, 10, 1);
+
+insertAtPosition(&head, 20, 2);
+
+insertAtPosition(&head, 30, 3);
+
+insertAtPosition(&head, 25, 3);
+
+insertAtPosition(&head, 40, 5);
+
+displayNodes(head);
+
+return 0;
+
+}
+
+
+OUTPUT:
+
+Singly Linked List: 10 -> 20 -> 25 -> 30 -> 40 -> NULL
+
+
+
+4.PROGRAM TO DELETE NODE AT THE BEGGINNING(SLL):
+
+#include<stdio.h>
+
+#include <stdlib.h>
+
+struct Node {
+
+int data;
+
+struct Node* next;
+
+};
+
+void deleteAtBeginning(struct Node** head) {
+
+
+if (*head == NULL) {
+
+printf ("List is empty Cannot delete\n");
+
+return;
+
+}
+
+
+struct Node* temp = *head;
+
+*head = (*head)->next;
+
+free(temp);
+
+}
+
+
+
+void displayNodes(struct Node* head) {
+
+
+struct Node* temp = head;
+
+
+printf("Linked List: ");
+
+while (temp != NULL) {
+
+printf("%d -> ", temp->data);
+
+temp = temp->next;
+
+}
+
+printf("NULL\n");
+
+}
+
+int main() {
+
+struct Node* n1 = (struct Node*)malloc(sizeof(struct Node));
+
+struct Node* n2 = (struct Node*)malloc(sizeof(struct Node));
+
+struct Node* n3 = (struct Node*)malloc(sizeof(struct Node));
+
+
+
+n1->data = 10;
+
+n2->data = 20;
+
+n3->data = 30;
+
+n1->next = n2;
+
+n2->next = n3;
+
+n3->next = NULL;
+
+struct Node* head = n1;
+
+printf("Original List:\n");
+
+displayNodes(head);
+
+deleteAtBeginning(&head);
+
+printf("After deleting first node:\n");
+
+displayNodes(head);
+
+
+return 0;
+
+}
+
+
+OUTPUT:
+
+Original List:
+
+Linked List: 10 -> 20 -> 30 -> NULL
+
+After deleting first node:
+
+Linked List: 20 -> 30 -> NULL
+
+
+
+5.PROGRAM TO DELETE NODE AT SPECIFIC POSITION (SLL):
+
+#include <stdio.h>
+
+#include <stdlib.h>
+
+struct Node {
+
+int data;
+
+struct Node *next;
+
+};
+
+void display(struct Node *head) {
+
+struct Node *temp = head;
+
+while(temp != NULL) {
+
+printf("%d -> ", temp->data);
+
+temp = temp->next;
+
+}
+
+printf("NULL\n");
+
+}
+
+
+
+void deleteAtPosition(struct Node **head, int position) {
+
+
+
+if(*head == NULL) {
+
+printf("No nodes to delete\n");
+
+return;
+
+}
+
+
+struct Node *current = *head; // Step 4
+
+int i = 1;
+
+
+
+if(position == 1) {
+
+struct Node *temp = *head;
+
+*head = (*head)->next;
+
+free(temp);
+
+return;
+
+}
+
+
+
+while(i < position - 1 && current->next != NULL) {
+
+current = current->next;
+
+i++;
+
+}
+
+
+
+if(current->next == NULL) {
+
+printf("Position out of range\n");
+
+return;
+
+}
+
+
+
+struct Node *temp = current;
+
+
+
+temp = temp->next;
+
+
+
+current->next = temp->next;
+
+
+
+free(temp);
+
+}
+
+int main() {
+
+struct Node *head = (struct Node*)malloc(sizeof(struct Node));
+
+head->data = 10;
+
+head->next = (struct Node*)malloc(sizeof(struct Node));
+
+head->next->data = 20;
+
+head->next->next = (struct Node*)malloc(sizeof(struct Node));
+
+head->next->next->data = 30;
+
+head->next->next->next = (struct Node*)malloc(sizeof(struct Node));
+
+head->next->next->next->data = 40;
+
+head->next->next->next->next = (struct Node*)malloc(sizeof(struct Node));
+
+head->next->next->next->next->data = 50;
+
+head->next->next->next->next->next = NULL;
+
+
+printf("Original List:\n");
+
+display(head);
+
+
+int pos;
+
+printf("Enter the position in which you want to delete the node: ");
