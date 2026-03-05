@@ -1,0 +1,455 @@
+Name: E.Vaishnavi
+Roll Number: 160725754114
+Class: CSA(B)
+Date: 26-02-26
+
+OPERATIONS ON DLL
+
+#include <stdio.h>
+
+#include <stdlib.h>
+
+
+struct Node
+
+{
+
+int data;
+
+struct Node *next;
+
+struct Node *prev;
+
+};
+
+
+struct Node *head = NULL, *temp, *current;
+
+void insertBegin(int x)
+
+{
+
+temp = (struct Node*)malloc(sizeof(struct Node));
+
+temp->data = x;
+
+temp->prev = NULL;
+
+temp->next = head;
+
+
+if(head != NULL)
+
+head->prev = temp;
+
+
+head = temp;
+
+}
+
+
+void insertEnd(int x)
+
+{
+
+temp = (struct Node*)malloc(sizeof(struct Node));
+
+temp->data = x;
+
+temp->next = NULL;
+
+
+if(head == NULL)
+
+{
+
+temp->prev = NULL;
+
+head = temp;
+
+return;
+
+}
+
+
+current = head;
+
+
+while(current->next != NULL)
+
+current = current->next;
+
+
+current->next = temp;
+
+temp->prev = current;
+
+}
+
+void insertPosition(int x, int pos)
+
+{
+
+if(pos == 1)
+
+{
+
+insertBegin(x);
+
+return;
+
+}
+
+
+temp = (struct Node*)malloc(sizeof(struct Node));
+
+temp->data = x;
+
+
+current = head;
+
+int i = 1;
+
+
+while(i < pos-1 && current != NULL)
+
+{
+
+current = current->next;
+
+i++;
+
+}
+
+
+if(current == NULL)
+
+{
+
+printf("Position out of range\n");
+
+free(temp);
+
+return;
+
+}
+
+temp->next = current->next;
+
+temp->prev = current;
+
+if(current->next != NULL)
+
+current->next->prev = temp;
+
+current->next = temp;
+
+}
+
+void deleteBegin()
+
+{
+
+if(head == NULL)
+
+{
+
+printf("Nothing to delete\n");
+
+return;
+
+}
+
+temp = head;
+
+head = head->next;
+
+if(head != NULL)
+
+head->prev = NULL;
+
+free(temp);
+
+}
+
+void deleteEnd()
+
+{
+
+if(head == NULL)
+
+{
+
+printf("Nothing to delete\n");
+
+return;
+
+}
+
+
+if(head->next == NULL)
+
+{
+
+free(head);
+
+head = NULL;
+
+return;
+
+}
+
+
+current = head;
+
+
+while(current->next != NULL)
+
+current = current->next;
+
+
+current->prev->next = NULL;
+
+free(current);
+
+}
+
+
+void deletePosition(int pos)
+
+{
+
+if(head == NULL)
+
+{
+
+printf("Nothing to delete\n");
+
+return;
+
+}
+
+
+if(pos == 1)
+
+{
+
+deleteBegin();
+
+return;
+
+}
+
+
+current = head;
+
+int i = 1;
+
+
+while(i < pos && current != NULL)
+
+{
+
+current = current->next;
+
+i++;
+
+}
+
+
+if(current == NULL)
+
+{
+
+printf("Position out of range\n");
+
+return;
+
+}
+
+
+if(current->next != NULL)
+
+current->next->prev = current->prev;
+
+
+if(current->prev != NULL)
+
+current->prev->next = current->next;
+
+
+free(current);
+
+}
+
+
+void display()
+
+{
+
+if(head == NULL)
+
+{
+
+printf("List is empty\n");
+
+return;
+
+}
+
+
+current = head;
+
+printf("DLL: ");
+
+
+while(current != NULL)
+
+{
+
+printf("%d <-> ", current->data);
+
+current = current->next;
+
+}
+
+
+printf("NULL\n");
+
+}
+
+
+int main()
+
+{
+
+int choice, x, pos;
+
+
+while(1)
+
+{
+
+printf("\n--- DOUBLY LINKED LIST ---\n");
+
+printf("1. Insert Begin\n");
+
+printf("2. Insert End\n");
+
+printf("3. Insert Position\n");
+
+printf("4. Delete Begin\n");
+
+printf("5. Delete End\n");
+
+printf("6. Delete Position\n");
+
+printf("7. Display\n");
+
+printf("8. Exit\n");
+
+
+printf("Enter choice: ");
+
+scanf("%d",&choice);
+
+
+switch(choice)
+
+{
+
+case 1:
+
+printf("Enter data: ");
+
+scanf("%d",&x);
+
+insertBegin(x);
+
+break;
+
+
+case 2:
+
+printf("Enter data: ");
+
+scanf("%d",&x);
+
+insertEnd(x);
+
+break;
+
+
+case 3:
+
+printf("Enter data and position: ");
+
+scanf("%d%d",&x,&pos);
+
+insertPosition(x,pos);
+
+break;
+
+
+case 4:
+
+deleteBegin();
+
+break;
+
+
+case 5:
+
+deleteEnd();
+
+break;
+
+case 6:
+
+printf("Enter position: ");
+
+scanf("%d",&pos);
+
+deletePosition(pos);
+
+break;
+
+case 7:
+
+display();
+
+break;
+
+case 8:
+
+exit(0);
+
+}
+
+}
+
+}
+
+
+OUTPUT
+
+
+--- DOUBLY LINKED LIST ---
+
+1. Insert Begin
+
+2. Insert End
+
+3. Insert Position
+
+4. Delete Begin
+
+5. Delete End
+
+6. Delete Position
+
+7. Display
+
+8. Exit
+
+Enter choice: 1
