@@ -1,0 +1,110 @@
+NAME: P. Jashmitha
+
+ROLLNO: 160725754090
+
+CLASS: CSA
+
+SECTION: B
+
+DATE: 2/2/26
+
+PROGRAM ON STRUCTURES:
+
+#include <stdio.h>
+
+
+struct student {
+
+char name[50];
+
+int rollnumber;
+
+float marks;
+
+};
+
+
+int main() {
+
+struct student S[3];
+
+int i;
+
+
+for(i = 0; i < 3; i++) {
+
+printf("Enter the name of the student: ");
+
+scanf("%s", S[i].name);
+
+
+printf("Enter the roll number: ");
+
+scanf("%d", &S[i].rollnumber);
+
+
+printf("Enter the marks: ");
+
+scanf("%f", &S[i].marks);
+
+}
+
+
+printf("\n--- Student Details ---\n");
+
+
+for(i = 0; i < 3; i++) {
+
+printf("Name of the student is %s\n", S[i].name);
+
+printf("Roll number is %d\n", S[i].rollnumber);
+
+printf("Marks obtained is %.2f\n", S[i].marks);
+
+}
+
+
+return 0;
+
+}
+
+OUTPUT:
+
+Enter the name of the student: priya
+
+Enter the roll number: 90
+
+Enter the marks: 97
+
+Enter the name of the student: janu
+
+Enter the roll number: 91
+
+Enter the marks: 98
+
+Enter the name of the student: kushi
+
+Enter the roll number: 92
+
+Enter the marks: 97
+
+
+--- Student Details ---
+
+Name of the student is priya
+
+Roll number is 90
+
+Marks obtained is 97.00
+
+Name of the student is janu
+
+Roll number is 91
+
+Marks obtained is 98.00
+
+Name of the student is kushi
+
+Roll number is 92
+
+Marks obtained is 97.00
