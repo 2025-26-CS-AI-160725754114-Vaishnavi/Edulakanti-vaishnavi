@@ -1,0 +1,95 @@
+NAME: E.Vaishnavi
+
+ROLLNO: 160725754114
+
+CLASS: CSA
+
+SECTION: B
+
+DATE: 2/2/26
+
+PROGRAM TO WORK WITH ARRAYS:
+
+#include <stdio.h>
+
+
+void main()
+
+{
+
+int a[5];
+
+
+int *P0, *P1, *P2, *P3, *P4;
+
+
+a[0] = 10;
+
+a[1] = 20;
+
+a[2] = 30;
+
+a[3] = 40;
+
+a[4] = 50;
+
+
+P0 = &a[0];
+
+P1 = &a[1];
+
+P2 = &a[2];
+
+P3 = &a[3];
+
+P4 = &a[4];
+
+
+printf("\nThe values are");
+
+printf("\nThe value of a[0] = %d", a[0]);
+
+printf("\nThe value of a[1] = %d", a[1]);
+
+printf("\nThe value of a[2] = %d", a[2]);
+
+printf("\nThe value of a[3] = %d", a[3]);
+
+printf("\nThe value of a[4] = %d", a[4]);
+
+
+printf("\nThe address of a[0] = %p", P0);
+
+printf("\nThe address of a[1] = %p", P1);
+
+printf("\nThe address of a[2] = %p", P2);
+
+printf("\nThe address of a[3] = %p", P3);
+
+printf("\nThe address of a[4] = %p", P4);
+
+}
+
+OUTPUT:
+
+The values are
+
+The value of a[0] = 10
+
+The value of a[1] = 20
+
+The value of a[2] = 30
+
+The value of a[3] = 40
+
+The value of a[4] = 50
+
+The address of a[0] = 0x7ffcf4c0cb90
+
+The address of a[1] = 0x7ffcf4c0cb94
+
+The address of a[2] = 0x7ffcf4c0cb98
+
+The address of a[3] = 0x7ffcf4c0cb9c
+
+The address of a[4] = 0x7ffcf4c0cba0
