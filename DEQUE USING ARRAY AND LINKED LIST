@@ -1,0 +1,199 @@
+NAME: E.VAISHNAVI
+ROLL NO: 160725754114
+CLASS:CSA-B
+DATE:16-4-26
+1.DEQUE USING ARRAY
+#include <stdio.h>
+#define MAX 5
+int deque[MAX];
+int front = -1, rear = -1;
+int isFull() {
+   return (front == 0 && rear == MAX - 1);
+}
+int isEmpty() {
+   return (front == -1);
+}
+void insertFront(int value) {
+   if (isFull()) {
+      printf("Deque is full\n");
+      return;
+    }
+    if (isEmpty()) {
+       front = rear = 0;
+    } else if (front == 0) {
+        printf("No space at front\n");
+        return;
+    } else {
+        front--;
+    }
+   deque[front] = value;
+}
+void insertRear(int value) {
+    if (isFull()) {
+        printf("Deque is full\n");
+        return;
+    }
+   if (isEmpty()) {
+        front = rear = 0;
+    } else if (rear == MAX - 1) {
+        printf("No space at rear\n");
+        return;
+    } else {
+        rear++;
+    }
+ deque[rear] = value;
+}
+void deleteFront() {
+    if (isEmpty()) {
+        printf("Deque is empty\n");
+        return;
+    }
+   printf("Deleted: %d\n", deque[front]);
+    if (front == rear) {
+        front = rear = -1;
+    } else {
+        front++;
+    }
+}
+void deleteRear() {
+    if (isEmpty()) {
+        printf("Deque is empty\n");
+        return;
+    }
+ printf("Deleted: %d\n", deque[rear]);
+    if (front == rear) {
+        front = rear = -1;
+    } else {
+        rear--;
+    }
+}
+void display() {
+    if (isEmpty()) {
+        printf("Deque is empty\n");
+        return;
+    }
+  printf("Deque elements: ");
+    for (int i = front; i <= rear; i++) {
+        printf("%d ", deque[i]);
+    }
+    printf("\n");
+}
+int main() {
+    insertRear(10);
+    insertRear(20);
+    insertFront(5);
+    insertRear(30);
+  display();
+  deleteFront();
+    deleteRear();
+   display();
+ return 0;
+}
+OUTPUT
+No space at front
+Deque elements: 10 20 30
+Deleted: 10
+Deleted: 30
+Deque elements: 20
+
+2.DEQUE USING LINKED LIST
+#include <stdio.h>
+#include <stdlib.h>
+struct node {
+    int data;
+    struct node *prev;
+    struct node *next;
+};
+struct node *front = NULL;
+struct node *rear = NULL;
+void insertFront(int x) {
+struct node *temp = (struct node*)malloc(sizeof(struct node));
+temp->data = x;
+temp->prev = NULL;
+temp->next = front;
+if (front == NULL) {
+front = rear = temp;
+} else {
+front->prev = temp;
+front = temp;
+}
+printf("%d inserted at front\n", x);
+}
+void insertRear(int x) {
+struct node *temp = (struct node*)malloc(sizeof(struct node));
+temp->data = x;
+temp->next = NULL;
+temp->prev = rear;
+if (rear == NULL) {
+front = rear = temp;
+} else {
+rear->next = temp;
+rear = temp;
+    }
+printf("%d inserted at rear\n", x);
+}
+void deleteFront() {
+if (front == NULL) {
+printf("Deque is empty\n");
+return;
+    }
+struct node *temp = front;
+printf("Deleted from front: %d\n", temp->data);
+front = front->next;
+if (front == NULL) {
+rear = NULL;
+} else {
+front->prev = NULL;
+}
+free(temp);
+}
+void deleteRear() {
+if (rear == NULL) {
+printf("Deque is empty\n");
+return;
+    }
+struct node *temp = rear;
+printf("Deleted from rear: %d\n", temp->data);
+rear = rear->prev;
+if (rear == NULL) {
+front = NULL;
+} else {
+rear->next = NULL;
+    }
+free(temp);
+}
+void display() {
+struct node *temp = front;
+if (temp == NULL) {
+printf("Deque is empty\n");
+return;
+    }
+printf("Deque elements: ");
+    while (temp != NULL) {
+        printf("%d ", temp->data);
+        temp = temp->next;
+    }
+printf("\n");
+}
+int main() {
+    insertRear(10);
+    insertRear(20);
+    insertFront(5);
+    insertRear(30);
+display();
+deleteFront();
+deleteRear();
+display();
+
+return 0;
+}
+
+OUTPUT
+10 inserted at rear
+20 inserted at rear
+5 inserted at front
+30 inserted at rear
+Deque elements: 5 10 20 30
+Deleted from front: 5
+Deleted from rear: 30
+Deque elements: 10 20
